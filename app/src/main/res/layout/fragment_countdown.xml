@@ -16,7 +16,7 @@
         android:inputType="number"
         android:maxLength="4"
         android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
+        android:textColorHint="#8DFFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/buttonSet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -38,35 +38,34 @@
 
     <Button
         android:id="@+id/buttonSet"
-        android:layout_width="54dp"
-        android:layout_height="42dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="10dp"
-        android:text="Set"
+        android:background="@drawable/ic_add_circle_pink_24dp"
         app:layout_constraintBottom_toTopOf="@+id/textViewCountdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonStartPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="15dp"
-        android:text="Start"
+        android:background="@drawable/ic_play_circle_outline_pink_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.400"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCountdown" />
 
     <Button
         android:id="@+id/buttonReset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Reset"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_replay_pink_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStartPause" />
+        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintStart_toEndOf="@id/buttonStartPause"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCountdown" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

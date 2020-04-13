@@ -148,12 +148,14 @@ public class CountdownFragment extends Fragment {
         if(timerRunning) {
             mEditTextInput.setVisibility(View.INVISIBLE);
             mButtonSet.setVisibility(View.INVISIBLE);
-            mButtonReset.setVisibility(View.INVISIBLE);
-            mButtonStartPause.setText("Pause");
+          //  mButtonReset.setVisibility(View.INVISIBLE);
+            // mButtonStartPause.setText("Pause");
+            mButtonStartPause.setBackgroundResource(R.drawable.ic_pause_circle_outline_pink_24dp);
         } else {
             mEditTextInput.setVisibility(View.VISIBLE);
             mButtonSet.setVisibility(View.VISIBLE);
-            mButtonStartPause.setText("Start");
+           // mButtonStartPause.setText("Start");
+            mButtonStartPause.setBackgroundResource(R.drawable.ic_play_circle_outline_pink_24dp);
 
             if(timeLeft < 1000) {
                 mButtonStartPause.setVisibility(View.INVISIBLE);
@@ -161,11 +163,11 @@ public class CountdownFragment extends Fragment {
                 mButtonStartPause.setVisibility(View.VISIBLE);
             }
 
-            if(timeLeft < startTime) {
-                mButtonReset.setVisibility(View.VISIBLE);
-            } else {
-                mButtonReset.setVisibility(View.INVISIBLE);
-            }
+       //     if(timeLeft < startTime) {
+          //      mButtonReset.setVisibility(View.VISIBLE);
+     //       } else {
+               // mButtonReset.setVisibility(View.INVISIBLE);
+         //   }
         }
     }
 
