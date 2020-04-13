@@ -20,7 +20,9 @@ import java.util.Locale;
 
 public class CountdownFragment extends Fragment {
 
-    private EditText mEditTextInput;
+    private EditText mEditTextInputHours;
+    private EditText mEditTextInputMinutes;
+    private EditText mEditTextInputSeconds; 
     private TextView mTextViewCountdown;
     private Button mButtonSet;
     private Button mButtonStartPause;
@@ -44,7 +46,9 @@ public class CountdownFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mEditTextInput = getView().findViewById(R.id.editTextInput);
+        mEditTextInputHours = getView().findViewById(R.id.editTextInputHours);
+        mEditTextInputMinutes = getView().findViewById(R.id.editTextInputMinutes);
+        mEditTextInputSeconds = getView().findViewById(R.id.editTextInputSeconds);
         mTextViewCountdown = getView().findViewById(R.id.textViewCountdown);
         mButtonSet = getView().findViewById(R.id.buttonSet);
         mButtonStartPause = getView().findViewById(R.id.buttonStartPause);
@@ -53,14 +57,34 @@ public class CountdownFragment extends Fragment {
         mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String checker = mEditTextInput.getText().toString();
+                String checkerH = mEditTextInputHours.getText().toString();
+                String checkerM = mEditTextInputMinutes.getText().toString();
+                String checkerS = mEditTextInputSeconds.getText().toString();
 
-                if(checker.equals("")) {
-                    Toast.makeText(getActivity(), "Field can´t be empty!", Toast.LENGTH_SHORT).show();
+                if(checkerH.equals("") && checkerM.equals("") && checkerS.equals("")) {
+                    Toast.makeText(getActivity(), "Fields can´t be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                long inputNumber = Long.parseLong(checker) * 60000;
+                long inputNumber = 0;
+
+                if(!checkerH.equals("")) {
+                    inputNumber += Long.parseLong(checkerH) * 60 * 60 * 1000;
+                }
+                if(!checkerM.equals("")) {
+                    inputNumber += Long.parseLong(checkerM) * 60000;
+                }
+                if(!checkerS.equals("")) {
+                    inputNumber += Long.parseLong(checkerS) * 1000;
+                }
+
+                /*if(!checkerM.equals("") && checkerS.equals("")) {
+                    inputNumber = Long.parseLong(checkerM) * 60000;
+                } else if(checkerM.equals("") && !checkerS.equals("")) {
+                    inputNumber = Long.parseLong(checkerS) * 1000;
+                } else {
+                    inputNumber = (Long.parseLong(checkerM) * 60000) + (Long.parseLong(checkerS) * 1000);
+                }  */
 
                 if(inputNumber == 0) {
                     Toast.makeText(getActivity(), "Enter a positive number!", Toast.LENGTH_SHORT).show();
@@ -68,7 +92,9 @@ public class CountdownFragment extends Fragment {
                 }
 
                 setTime(inputNumber);
-                mEditTextInput.setText("");
+                mEditTextInputHours.setText("");
+                mEditTextInputMinutes.setText("");
+                mEditTextInputSeconds.setText("");
             }
         });
 
@@ -146,13 +172,17 @@ public class CountdownFragment extends Fragment {
 
     public void updateButtons() {
         if(timerRunning) {
-            mEditTextInput.setVisibility(View.INVISIBLE);
+            mEditTextInputHours.setVisibility(View.INVISIBLE);
+            mEditTextInputMinutes.setVisibility(View.INVISIBLE);
+            mEditTextInputSeconds.setVisibility(View.INVISIBLE);
             mButtonSet.setVisibility(View.INVISIBLE);
           //  mButtonReset.setVisibility(View.INVISIBLE);
             // mButtonStartPause.setText("Pause");
             mButtonStartPause.setBackgroundResource(R.drawable.ic_pause_circle_outline_pink_24dp);
         } else {
-            mEditTextInput.setVisibility(View.VISIBLE);
+            mEditTextInputHours.setVisibility(View.VISIBLE);
+            mEditTextInputMinutes.setVisibility(View.VISIBLE);
+            mEditTextInputSeconds.setVisibility(View.VISIBLE);
             mButtonSet.setVisibility(View.VISIBLE);
            // mButtonStartPause.setText("Start");
             mButtonStartPause.setBackgroundResource(R.drawable.ic_play_circle_outline_pink_24dp);

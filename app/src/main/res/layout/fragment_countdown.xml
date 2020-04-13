@@ -8,19 +8,54 @@
     android:background="#212121">
 
     <EditText
-        android:id="@+id/editTextInput"
+        android:id="@+id/editTextInputHours"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Hours"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textColor="#ffffff"
+        android:textColorHint="#8DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSet"
+        app:layout_constraintEnd_toStartOf="@id/editTextInputMinutes"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <EditText
+        android:id="@+id/editTextInputMinutes"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Minutes"
         android:inputType="number"
-        android:maxLength="4"
+        android:maxLength="3"
         android:textColor="#ffffff"
         android:textColorHint="#8DFFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/buttonSet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/editTextInputSeconds"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Seconds"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textColor="#ffffff"
+        android:textColorHint="#8DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@id/editTextInputMinutes"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
