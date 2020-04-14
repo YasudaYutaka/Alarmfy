@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +23,14 @@ public class CountdownFragment extends Fragment {
 
     private EditText mEditTextInputHours;
     private EditText mEditTextInputMinutes;
-    private EditText mEditTextInputSeconds; 
+    private EditText mEditTextInputSeconds;
     private TextView mTextViewCountdown;
     private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
+    private ProgressBar mProgressBar1;
+    private int progressBarMax;
+    private int currentProgress;
 
     private CountDownTimer countDownTimer;
     private Boolean timerRunning = false;
@@ -53,6 +57,7 @@ public class CountdownFragment extends Fragment {
         mButtonSet = getView().findViewById(R.id.buttonSet);
         mButtonStartPause = getView().findViewById(R.id.buttonStartPause);
         mButtonReset = getView().findViewById(R.id.buttonReset);
+        mProgressBar1 = getView().findViewById(R.id.progressBar1);
 
         mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +107,7 @@ public class CountdownFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(timerRunning) {
-                    pauseCountDown();
+                    pauseCountdown();
                 } else {
                     startCountdown();
                 }
@@ -120,6 +125,8 @@ public class CountdownFragment extends Fragment {
     public void setTime(Long time) {
         startTime = time;
         resetCountdown();
+        progressBarMax = (int) (long) time;
+        mProgressBar1.setMax(progressBarMax);
     }
 
     public void startCountdown() {
@@ -129,6 +136,8 @@ public class CountdownFragment extends Fragment {
             public void onTick(long millisUntilFinished) {
                 timeLeft = millisUntilFinished;
                 updateCountdownText();
+                mProgressBar1.incrementProgressBy(1000);
+                currentProgress = mProgressBar1.getProgress();
             }
 
             @Override
@@ -142,7 +151,7 @@ public class CountdownFragment extends Fragment {
         updateButtons();
     }
 
-    public void pauseCountDown() {
+    public void pauseCountdown() {
         countDownTimer.cancel();
         timerRunning = false;
         updateButtons();
@@ -152,6 +161,8 @@ public class CountdownFragment extends Fragment {
         timeLeft = startTime;
         updateCountdownText();
         updateButtons();
+        mProgressBar1.setMax((int)(long)startTime); // teste2
+        mProgressBar1.setProgress(0); // TESTEEEEEEEE
     }
 
     public void updateCountdownText() {
@@ -213,6 +224,8 @@ public class CountdownFragment extends Fragment {
         editor.putLong("timeLeft", timeLeft);
         editor.putLong("endTime", endTime);
         editor.putBoolean("timerRunning", timerRunning);
+        editor.putInt("progressBarMax", progressBarMax);
+        editor.putInt("currentProgress", currentProgress);
 
         editor.apply();
 
@@ -230,6 +243,10 @@ public class CountdownFragment extends Fragment {
         startTime = pref.getLong("startTime", 600000);
         timeLeft = pref.getLong("timeLeft", startTime);
         timerRunning = pref.getBoolean("timerRunning", false);
+        progressBarMax = pref.getInt("progressbarMax", (int)(long)startTime); // VERIFICAR SE O DEFVALUE ESTÁ CORRETO
+        currentProgress = pref.getInt("currentProgress", 0);
+        mProgressBar1.setMax(progressBarMax);
+        mProgressBar1.setProgress(currentProgress);
 
         updateCountdownText();
         updateButtons();
@@ -237,7 +254,6 @@ public class CountdownFragment extends Fragment {
         if(timerRunning) {
             endTime = pref.getLong("endTime", 0);
             timeLeft = endTime - System.currentTimeMillis(); // quantidade para acabar - tempo atual corrido
-
             if(timeLeft < 0) {
                 timeLeft = 0;
                 timerRunning = false;

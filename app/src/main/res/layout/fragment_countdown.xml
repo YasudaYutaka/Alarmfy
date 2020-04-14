@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.9" />
 
 
     <EditText
@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <EditText
         android:id="@+id/editTextInputSeconds"
@@ -57,7 +57,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toEndOf="@id/editTextInputMinutes"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <TextView
         android:id="@+id/textViewCountdown"
@@ -75,17 +75,18 @@
         android:id="@+id/buttonSet"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/ic_add_circle_pink_24dp"
         app:layout_constraintBottom_toTopOf="@+id/textViewCountdown"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonStartPause"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="55dp"
         android:background="@drawable/ic_play_circle_outline_pink_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.400"
@@ -96,11 +97,23 @@
         android:id="@+id/buttonReset"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="55dp"
         android:background="@drawable/ic_replay_pink_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toEndOf="@id/buttonStartPause"
         app:layout_constraintTop_toBottomOf="@+id/textViewCountdown" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
